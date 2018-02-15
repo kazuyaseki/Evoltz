@@ -1,15 +1,32 @@
 <template>
   <header>
-    <nav class="pa3 pa4-ns">
-      <nuxt-link exact class="link dim gray f6 f5-ns dib mr3" to="/" title="Home">Home</nuxt-link>
-      <nuxt-link class="link dim gray f6 f5-ns dib mr3" to="/active" title="Active">Active</nuxt-link>
-      <nuxt-link class="link dim gray f6 f5-ns dib mr3" to="/completed" title="Completed">Completed</nuxt-link>
+    <nav>
+      <span class="logo">Evoltz⚡️</span>
+      <nuxt-link exact to="/" title="Todo">Todo</nuxt-link>
+      <nuxt-link to="/reflection" title="振り返り">振り返り</nuxt-link>
     </nav>
   </header>
 </template>
-<style scoped>
+<style lang="scss" scoped>
+header {
+  background-color: #89bdde;
+  padding: 15px 25px;
+}
+.logo {
+  display: inline;
+  margin-right: 25px;
+  color: #ffff33;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 18px;
+}
+a {
+  color: #fefefe;
+  text-decoration: none;
+  margin-right: 15px;
+}
 a.nuxt-link-active {
-  color: black;
+  color: #fff;
   font-weight: bold;
 }
 </style>
