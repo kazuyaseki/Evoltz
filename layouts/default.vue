@@ -12,3 +12,10 @@ export default {
   }
 };
 </script>
+<style>
+.container {
+  background-color: #fafafa;
+  height: 100%;
+  overflow: hidden;
+}
+</style>
