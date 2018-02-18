@@ -14,6 +14,7 @@ import Vue from "vue";
 import Component from "nuxt-class-component";
 
 import ProjectSidebar from "../components/ProjectSidebar.vue";
+import { Types } from "../interface/types";
 
 @Component({
   components: {
@@ -22,7 +23,7 @@ import ProjectSidebar from "../components/ProjectSidebar.vue";
 })
 export default class extends Vue {
   todos: string[] = ["買い物", "洗濯", "掃除"];
-  projects: { name: string; color: string }[] = [
+  projects: Types.Project[] = [
     { name: "仕事", color: "red" },
     { name: "生産性向上", color: "blue" },
     { name: "家事", color: "yellow" }

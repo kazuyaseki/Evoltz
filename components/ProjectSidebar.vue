@@ -17,10 +17,11 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
+import { Types } from "../interface/types";
 
 @Component({})
 export default class extends Vue {
-  @Prop() projects: { name: string; color: string }[];
+  @Prop() projects: Types.Project[];
 
   projectName: string = "";
   addingProject: boolean = false;
