@@ -7,6 +7,7 @@
           {{ project.name }}
         </li>
       </ul>
+      <button @click="()=>{}" class="add-project-button">+ プロジェクトを追加</button>
     </div>
     <div class="todos">
       <ul>
@@ -44,8 +45,10 @@ main {
 }
 .projects {
   grid-area: g0;
+  font-size: 14px;
   ul {
     list-style: none;
+    padding: 0px;
     li {
       padding: 8px 10px;
       cursor: pointer;
@@ -62,6 +65,14 @@ main {
   border-radius: 50%;
   margin-right: 8px;
 }
+
+.add-project-button {
+  border: none;
+  background-color: inherit;
+  color: #dd4b39;
+  cursor: pointer;
+}
+
 .todos {
   grid-area: g1;
   background-color: #fff;
