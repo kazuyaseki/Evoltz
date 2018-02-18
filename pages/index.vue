@@ -1,6 +1,6 @@
 <template>
   <main>
-    <ProjectSidebar :projects="projects"/>
+    <ProjectSidebar :projects="projects" @addProject="addProject"/>
     <div class="todos">
       <ul>
         <li :key="todo" v-for="todo in todos">{{ todo }}</li>
@@ -28,6 +28,10 @@ export default class extends Vue {
     { name: "生産性向上", color: "blue" },
     { name: "家事", color: "yellow" }
   ];
+
+  addProject = name => {
+    this.projects.push({ name, color: "red" });
+  };
 }
 </script>
 <style lang="scss" scoped>
