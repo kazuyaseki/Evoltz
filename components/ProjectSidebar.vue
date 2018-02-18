@@ -32,6 +32,7 @@ export default class extends Vue {
   addProject() {
     this.projects.push({ id: "hogeead", name: this.projectName, color: "red" });
     this.setAddingProjectMode(false);
+    this.projectName = "";
   }
 }
 </script>
