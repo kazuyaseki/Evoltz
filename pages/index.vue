@@ -22,10 +22,10 @@ import ProjectSidebar from "../components/ProjectSidebar.vue";
 })
 export default class extends Vue {
   todos: string[] = ["買い物", "洗濯", "掃除"];
-  projects: { id: string; name: string; color: string }[] = [
-    { id: "hoge", name: "仕事", color: "red" },
-    { id: "hogee", name: "生産性向上", color: "blue" },
-    { id: "hogeee", name: "家事", color: "yellow" }
+  projects: { name: string; color: string }[] = [
+    { name: "仕事", color: "red" },
+    { name: "生産性向上", color: "blue" },
+    { name: "家事", color: "yellow" }
   ];
 }
 </script>

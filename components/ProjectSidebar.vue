@@ -1,7 +1,7 @@
 <template>
   <div class="projects">
     <ul>
-      <li :key="project.id" v-for="project of projects">
+      <li :key="project.name" v-for="project of projects">
         <span class="project-icon" :style="{ backgroundColor: project.color }"></span>
         {{ project.name }}
       </li>
@@ -20,7 +20,7 @@ import { Component, Prop } from "vue-property-decorator";
 
 @Component({})
 export default class extends Vue {
-  @Prop() projects: { id: string; name: string; color: string }[];
+  @Prop() projects: { name: string; color: string }[];
 
   projectName: string = "";
   addingProject: boolean = false;
@@ -30,7 +30,7 @@ export default class extends Vue {
   }
 
   addProject() {
-    this.projects.push({ id: "hogeead", name: this.projectName, color: "red" });
+    this.projects.push({ name: this.projectName, color: "red" });
     this.setAddingProjectMode(false);
     this.projectName = "";
   }
