@@ -7,7 +7,12 @@
           {{ project.name }}
         </li>
       </ul>
-      <button @click="()=>{}" class="add-project-button">+ プロジェクトを追加</button>
+      <div v-if="addingProject">
+        <input type="text" v-model="projectName" />
+        <button @click="addProject">プロジェクトを追加する</button>
+        <button @click="setAddingProjectMode(false)">キャンセル</button>
+      </div>
+      <button v-else @click="setAddingProjectMode(true)" class="add-project-button">+ プロジェクトを追加</button>
     </div>
     <div class="todos">
       <ul>
@@ -31,6 +36,17 @@ export default class extends Vue {
     { id: "hogee", name: "生産性向上", color: "blue" },
     { id: "hogeee", name: "家事", color: "yellow" }
   ];
+  projectName: string = "";
+  addingProject: boolean = false;
+
+  setAddingProjectMode(newMode) {
+    this.addingProject = newMode;
+  }
+
+  addProject() {
+    this.projects.push({ id: "hogeead", name: this.projectName, color: "red" });
+    this.setAddingProjectMode(false);
+  }
 }
 </script>
 <style lang="scss" scoped>
