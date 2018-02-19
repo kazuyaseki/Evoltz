@@ -1,17 +1,7 @@
 <template>
   <main>
-    <ProjectSidebar :projects="projects" @addProject="addProject"/>
-    <div class="todos">
-      <ul>
-        <li :key="todo" v-for="todo in selectedProject.todos">{{ todo }}</li>
-      </ul>
-      <div v-if="addingTask">
-        <input type="text" v-model="taskName" />
-        <button @click="addTask">タスクを追加する</button>
-        <button @click="setAddingTaskMode(false)">キャンセル</button>
-      </div>
-      <button v-else @click="setAddingTaskMode(true)" class="add-task-button">+ タスクを追加</button>
-    </div>
+    <ProjectSidebar :projects="projects" @addProject="addProject" />
+    <TodoList :todos="selectedProject.todos" @addTodo="addTodo" />
   </main>
 </template>
 
@@ -20,11 +10,13 @@ import Vue from "vue";
 import Component from "nuxt-class-component";
 
 import ProjectSidebar from "../components/ProjectSidebar.vue";
+import TodoList from "../components/TodoList.vue";
 import { Types } from "../interface/types";
 
 @Component({
   components: {
-    ProjectSidebar
+    ProjectSidebar,
+    TodoList
   }
 })
 export default class extends Vue {
@@ -34,22 +26,14 @@ export default class extends Vue {
     { name: "家事", color: "yellow", todos: ["買い物", "洗濯", "掃除"] }
   ];
   selectedProject: Types.Project = this.projects[0];
-  taskName: string = "";
-  addingTask: boolean = false;
 
   addProject = name => {
     this.projects.push({ name, color: "red", todos: [] });
   };
 
-  setAddingTaskMode(newMode) {
-    this.addingTask = newMode;
-  }
-
-  addTask() {
-    this.selectedProject.todos.push(this.taskName);
-    this.setAddingTaskMode(false);
-    this.taskName = "";
-  }
+  addTodo = newTodoName => {
+    this.selectedProject.todos.push(newTodoName);
+  };
 }
 </script>
 <style lang="scss" scoped>
