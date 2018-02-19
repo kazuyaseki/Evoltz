@@ -3,7 +3,7 @@
     <ProjectSidebar :projects="projects" @addProject="addProject"/>
     <div class="todos">
       <ul>
-        <li :key="todo" v-for="todo in todos">{{ todo }}</li>
+        <li :key="todo" v-for="todo in selectedProject.todos">{{ todo }}</li>
       </ul>
     </div>
   </main>
@@ -22,15 +22,15 @@ import { Types } from "../interface/types";
   }
 })
 export default class extends Vue {
-  todos: string[] = ["買い物", "洗濯", "掃除"];
   projects: Types.Project[] = [
-    { name: "仕事", color: "red" },
-    { name: "生産性向上", color: "blue" },
-    { name: "家事", color: "yellow" }
+    { name: "仕事", color: "red", todos: ["買い物", "洗濯", "掃除"] },
+    { name: "生産性向上", color: "blue", todos: ["買い物", "洗濯", "掃除"] },
+    { name: "家事", color: "yellow", todos: ["買い物", "洗濯", "掃除"] }
   ];
+  selectedProject: Types.Project = this.projects[0];
 
   addProject = name => {
-    this.projects.push({ name, color: "red" });
+    this.projects.push({ name, color: "red", todos: [] });
   };
 }
 </script>
