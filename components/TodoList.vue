@@ -1,7 +1,12 @@
 <template>
   <div class="todos">
     <ul>
-      <li :key="todo" v-for="todo in todos">{{ todo }}</li>
+      <li :class="todo.completed ? 'todo completed' : 'todo'" 
+        v-for="todo in todos"
+        :key="todo.name"
+      >
+        {{ todo.name }}
+      </li>
     </ul>
     <div v-if="addingTodo">
       <input type="text" v-model="todoName" @keypress.enter="addTodo" />

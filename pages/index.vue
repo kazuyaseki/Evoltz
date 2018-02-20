@@ -35,17 +35,25 @@ export default class extends Vue {
     });
   }
 
-  addProject = name => {
+  addProject = (name: string) => {
     this.projects.push({ name, color: "red", todos: [] });
     database.ref("/projects").set(this.projects);
   };
 
-  addTodo = newTodoName => {
+  addTodo = (newTodoName: string) => {
     if (this.projects[this.selectedProjectIndex].todos) {
-      this.projects[this.selectedProjectIndex].todos.push(newTodoName);
+      this.projects[this.selectedProjectIndex].todos.push({
+        name: newTodoName,
+        memo: "",
+        completed: false
+      });
     } else {
       this.$set(this.projects[this.selectedProjectIndex], "todos", [
-        newTodoName
+        {
+          name: newTodoName,
+          memo: "",
+          completed: false
+        }
       ]);
     }
     database.ref("/projects").set(this.projects);
