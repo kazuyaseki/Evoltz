@@ -7,7 +7,7 @@
       </li>
     </ul>
     <div v-if="addingProject">
-      <input type="text" v-model="projectName" />
+      <input type="text" v-model="projectName"  @keypress.enter="addProject" />
       <button @click="addProject">プロジェクトを追加する</button>
       <button @click="setAddingProjectMode(false)">キャンセル</button>
     </div>

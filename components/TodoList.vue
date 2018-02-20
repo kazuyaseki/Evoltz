@@ -4,7 +4,7 @@
       <li :key="todo" v-for="todo in todos">{{ todo }}</li>
     </ul>
     <div v-if="addingTodo">
-      <input type="text" v-model="todoName" />
+      <input type="text" v-model="todoName" @keypress.enter="addTodo" />
       <button @click="addTodo">タスクを追加する</button>
       <button @click="setAddingTodoMode(false)">キャンセル</button>
     </div>
