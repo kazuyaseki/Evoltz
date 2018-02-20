@@ -25,7 +25,7 @@ export default class extends Vue {
   selectedProject: Types.Project | undefined;
 
   created() {
-    database.ref("/projects").on("value", snapshot => {
+    database.ref("/projects").once("value", snapshot => {
       if (snapshot !== null) {
         this.projects = snapshot.val() || [];
       }
