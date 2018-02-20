@@ -13,7 +13,7 @@
       <button @click="addTodo">タスクを追加する</button>
       <button @click="setAddingTodoMode(false)">キャンセル</button>
     </div>
-    <button v-else @click="setAddingTodoMode(true)" class="add-Todo-button">+ タスクを追加する</button>
+    <button v-else @click="setAddingTodoMode(true)" class="add-todo-button">+ タスクを追加する</button>
   </div>
 </template>
 <script lang="ts">
@@ -40,7 +40,14 @@ export default class extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.add-project-button {
+.todo {
+  cursor: pointer;
+}
+.completed {
+  text-decoration: line-through;
+}
+
+.add-todo-button {
   border: none;
   background-color: inherit;
   color: #dd4b39;
