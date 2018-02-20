@@ -42,21 +42,23 @@ export default class extends Vue {
 
   addTodo = (newTodoName: string) => {
     if (this.projects[this.selectedProjectIndex].todos) {
-      this.projects[this.selectedProjectIndex].todos.push({
-        name: newTodoName,
-        memo: "",
-        completed: false
-      });
+      this.projects[this.selectedProjectIndex].todos.push(
+        this.todoFactory(newTodoName)
+      );
     } else {
       this.$set(this.projects[this.selectedProjectIndex], "todos", [
-        {
-          name: newTodoName,
-          memo: "",
-          completed: false
-        }
+        this.todoFactory(newTodoName)
       ]);
     }
     database.ref("/projects").set(this.projects);
+  };
+
+  todoFactory = (name: string): Types.Todo => {
+    return {
+      name,
+      memo: "",
+      completed: false
+    };
   };
 }
 </script>
