@@ -1,7 +1,7 @@
 <template>
   <main>
     <ProjectSidebar :projects="projects" @addProject="addProject" />
-    <TodoList :todos="selectedProject.todos" @addTodo="addTodo" />
+    <TodoList :todos="selectedProject && selectedProject.todos || []" @addTodo="addTodo" />
   </main>
 </template>
 
@@ -11,6 +11,7 @@ import Component from "nuxt-class-component";
 
 import ProjectSidebar from "../components/ProjectSidebar.vue";
 import TodoList from "../components/TodoList.vue";
+import { database } from "../plugins/firebase";
 import { Types } from "../interface/types";
 
 @Component({
@@ -20,19 +21,26 @@ import { Types } from "../interface/types";
   }
 })
 export default class extends Vue {
-  projects: Types.Project[] = [
-    { name: "仕事", color: "red", todos: ["買い物", "洗濯", "掃除"] },
-    { name: "生産性向上", color: "blue", todos: ["買い物", "洗濯", "掃除"] },
-    { name: "家事", color: "yellow", todos: ["買い物", "洗濯", "掃除"] }
-  ];
-  selectedProject: Types.Project = this.projects[0];
+  projects: Types.Project[] = [];
+  selectedProject: Types.Project | undefined;
+
+  created() {
+    database.ref("/projects").on("value", snapshot => {
+      if (snapshot !== null) {
+        this.projects = snapshot.val() || [];
+      }
+    });
+  }
 
   addProject = name => {
     this.projects.push({ name, color: "red", todos: [] });
+    database.ref("/projects").set(this.projects);
   };
 
   addTodo = newTodoName => {
-    this.selectedProject.todos.push(newTodoName);
+    if (this.selectedProject) {
+      this.selectedProject.todos.push(newTodoName);
+    }
   };
 }
 </script>
