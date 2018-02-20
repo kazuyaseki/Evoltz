@@ -1,7 +1,7 @@
 <template>
   <main>
     <ProjectSidebar :projects="projects" @addProject="addProject" />
-    <TodoList :todos="selectedProject && selectedProject.todos || []" @addTodo="addTodo" />
+    <TodoList :todos="projects[selectedProjectIndex] && projects[selectedProjectIndex].todos || []" @addTodo="addTodo" />
   </main>
 </template>
 
@@ -22,7 +22,7 @@ import { Types } from "../interface/types";
 })
 export default class extends Vue {
   projects: Types.Project[] = [];
-  selectedProject: Types.Project | undefined;
+  selectedProjectIndex: number = 0;
 
   created() {
     database.ref("/projects").once("value", snapshot => {
@@ -41,9 +41,14 @@ export default class extends Vue {
   };
 
   addTodo = newTodoName => {
-    if (this.selectedProject) {
-      this.selectedProject.todos.push(newTodoName);
+    if (this.projects[this.selectedProjectIndex].todos) {
+      this.projects[this.selectedProjectIndex].todos.push(newTodoName);
+    } else {
+      this.$set(this.projects[this.selectedProjectIndex], "todos", [
+        newTodoName
+      ]);
     }
+    database.ref("/projects").set(this.projects);
   };
 }
 </script>
