@@ -27,7 +27,10 @@ export default class extends Vue {
   created() {
     database.ref("/projects").once("value", snapshot => {
       if (snapshot !== null) {
-        this.projects = snapshot.val() || [];
+        const projects = snapshot.val() || [];
+        for (const proj of projects) {
+          this.projects.push(proj);
+        }
       }
     });
   }
