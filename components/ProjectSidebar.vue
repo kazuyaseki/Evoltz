@@ -60,6 +60,7 @@ export default class extends Vue {
     list-style: none;
     padding: 0px;
     li {
+      display: flex;
       padding: 8px 10px;
       cursor: pointer;
       &:hover {
@@ -85,7 +86,7 @@ export default class extends Vue {
   cursor: pointer;
 }
 .delete-button {
-  float: right;
+  margin-left: auto;
   border: none;
   background-color: transparent;
   cursor: pointer;
