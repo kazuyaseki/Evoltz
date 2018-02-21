@@ -1,9 +1,10 @@
 <template>
   <div class="projects">
     <ul>
-      <li :key="project.name" v-for="project of projects">
+      <li :key="project.name" v-for="(project, index) of projects">
         <span class="project-icon" :style="{ backgroundColor: project.color }"></span>
         {{ project.name }}
+        <button class="delete-button" @click="deleteProject(index)">×</button>
       </li>
     </ul>
     <div v-if="addingProject">
@@ -35,6 +36,10 @@ export default class extends Vue {
     this.setAddingProjectMode(false);
     this.projectName = "";
   }
+
+  deleteProject(index) {
+    this.$emit("deleteProject", index);
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -64,6 +69,12 @@ export default class extends Vue {
   border: none;
   background-color: inherit;
   color: #dd4b39;
+  cursor: pointer;
+}
+.delete-button {
+  float: right;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
 }
 </style>

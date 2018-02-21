@@ -1,6 +1,6 @@
 <template>
   <main>
-    <ProjectSidebar :projects="projects" @addProject="addProject" />
+    <ProjectSidebar :projects="projects" @addProject="addProject" @deleteProject="deleteProject" />
     <TodoList :todos="projects[selectedProjectIndex] && projects[selectedProjectIndex].todos || []" @addTodo="addTodo" />
   </main>
 </template>
@@ -37,6 +37,11 @@ export default class extends Vue {
 
   addProject = (name: string) => {
     this.projects.push({ name, color: "red", todos: [] });
+    database.ref("/projects").set(this.projects);
+  };
+
+  deleteProject = (index: number) => {
+    this.projects.splice(index, 1);
     database.ref("/projects").set(this.projects);
   };
 
