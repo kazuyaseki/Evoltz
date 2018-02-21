@@ -9,7 +9,7 @@
       >
         <span class="project-icon" :style="{ backgroundColor: project.color }"></span>
         {{ project.name }}
-        <button class="delete-button" @click="deleteProject(index)">×</button>
+        <button class="delete-button" @click.stop="deleteProject(index)">×</button>
       </li>
     </ul>
     <div v-if="addingProject">
