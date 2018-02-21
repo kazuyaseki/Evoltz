@@ -1,7 +1,12 @@
 <template>
   <div class="projects">
     <ul>
-      <li :key="project.name" v-for="(project, index) of projects">
+      <li 
+        :class="selectedProjectIndex === index ? 'selected' : ''" 
+        :key="project.name" 
+        v-for="(project, index) of projects"
+        @click="selectProject(index)"
+      >
         <span class="project-icon" :style="{ backgroundColor: project.color }"></span>
         {{ project.name }}
         <button class="delete-button" @click="deleteProject(index)">×</button>
@@ -23,6 +28,7 @@ import { Types } from "../interface/types";
 @Component({})
 export default class extends Vue {
   @Prop() projects: Types.Project[];
+  @Prop() selectedProjectIndex: number;
 
   projectName: string = "";
   addingProject: boolean = false;
@@ -39,6 +45,10 @@ export default class extends Vue {
 
   deleteProject(index) {
     this.$emit("deleteProject", index);
+  }
+
+  selectProject(index) {
+    this.$emit("selectProject", index);
   }
 }
 </script>
@@ -57,6 +67,9 @@ export default class extends Vue {
       }
     }
   }
+}
+.selected {
+  background-color: #fff;
 }
 .project-icon {
   width: 12px;

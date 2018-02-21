@@ -1,7 +1,16 @@
 <template>
   <main>
-    <ProjectSidebar :projects="projects" @addProject="addProject" @deleteProject="deleteProject" />
-    <TodoList :todos="projects[selectedProjectIndex] && projects[selectedProjectIndex].todos || []" @addTodo="addTodo" />
+    <ProjectSidebar 
+      :projects="projects"
+      :selectedProjectIndex="selectedProjectIndex"
+      @addProject="addProject"
+      @deleteProject="deleteProject"
+      @selectProject="selectProject"
+    />
+    <TodoList 
+      :todos="projects[selectedProjectIndex] && projects[selectedProjectIndex].todos || []" 
+      @addTodo="addTodo" 
+    />
   </main>
 </template>
 
@@ -46,6 +55,10 @@ export default class extends Vue {
   };
 
   addTodo = (newTodoName: string) => {
+  selectProject(index: number) {
+    this.selectedProjectIndex = index;
+  }
+
     if (this.projects[this.selectedProjectIndex].todos) {
       this.projects[this.selectedProjectIndex].todos.push(
         this.todoFactory(newTodoName)
