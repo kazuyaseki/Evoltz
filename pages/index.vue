@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Component from "nuxt-class-component";
+import { Component } from "vue-property-decorator";
 
 import ProjectSidebar from "../components/ProjectSidebar.vue";
 import TodoList from "../components/TodoList.vue";
