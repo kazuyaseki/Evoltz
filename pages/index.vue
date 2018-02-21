@@ -44,21 +44,21 @@ export default class extends Vue {
     });
   }
 
-  addProject = (name: string) => {
+  addProject(name: string) {
     this.projects.push({ name, color: "red", todos: [] });
     database.ref("/projects").set(this.projects);
-  };
+  }
 
-  deleteProject = (index: number) => {
+  deleteProject(index: number) {
     this.projects.splice(index, 1);
     database.ref("/projects").set(this.projects);
-  };
+  }
 
-  addTodo = (newTodoName: string) => {
   selectProject(index: number) {
     this.selectedProjectIndex = index;
   }
 
+  addTodo(newTodoName: string) {
     if (this.projects[this.selectedProjectIndex].todos) {
       this.projects[this.selectedProjectIndex].todos.push(
         this.todoFactory(newTodoName)
@@ -69,7 +69,7 @@ export default class extends Vue {
       ]);
     }
     database.ref("/projects").set(this.projects);
-  };
+  }
 
   todoFactory = (name: string): Types.Todo => {
     return {
