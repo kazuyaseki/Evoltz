@@ -9,7 +9,8 @@
     />
     <TodoList 
       :todos="projects[selectedProjectIndex] && projects[selectedProjectIndex].todos || []" 
-      @addTodo="addTodo" 
+      @addTodo="addTodo"
+      @toggleStatus="toggleTodoStatus"
     />
   </main>
 </template>
@@ -68,6 +69,12 @@ export default class extends Vue {
         this.todoFactory(newTodoName)
       ]);
     }
+    database.ref("/projects").set(this.projects);
+  }
+
+  toggleTodoStatus(index) {
+    let todo = this.projects[this.selectedProjectIndex].todos[index];
+    todo.completed = !todo.completed;
     database.ref("/projects").set(this.projects);
   }
 

@@ -2,8 +2,9 @@
   <div class="todos">
     <ul>
       <li :class="todo.completed ? 'todo completed' : 'todo'" 
-        v-for="todo in todos"
+        v-for="(todo, index) in todos"
         :key="todo.name"
+        @click="toggleStatus(index)"
       >
         {{ todo.name }}
       </li>
@@ -36,6 +37,10 @@ export default class extends Vue {
     this.$emit("addTodo", this.todoName);
     this.setAddingTodoMode(false);
     this.todoName = "";
+  }
+
+  toggleStatus(index: number) {
+    this.$emit("toggleStatus", index);
   }
 }
 </script>
