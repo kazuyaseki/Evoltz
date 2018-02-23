@@ -3,7 +3,8 @@
     <nav>
       <span class="logo">Evoltz⚡️</span>
       <nuxt-link exact to="/" title="Todo">Todo</nuxt-link>
-      <nuxt-link to="/reflection" title="振り返り">振り返り</nuxt-link>
+      <nuxt-link to="/history" title="History">History</nuxt-link>
+      <nuxt-link to="/reflection" title="Reflection">Reflection</nuxt-link>
     </nav>
   </header>
 </template>
@@ -21,9 +22,12 @@ header {
   font-size: 18px;
 }
 a {
-  color: #fefefe;
+  color: #f8f8f8;
   text-decoration: none;
   margin-right: 15px;
+  &:hover {
+    color: #fff;
+  }
 }
 a.nuxt-link-active {
   color: #fff;
