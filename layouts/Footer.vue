@@ -1,8 +1,23 @@
 <template>
   <footer>
-    <div>タイマー予定地</div>
+    <div @click="setShowTimer(true)">タイマー予定地</div>
+    <div v-if="showTimer">タイマー</div>
   </footer>
 </template>
+<script lang="ts">
+export default {
+  data() {
+    return {
+      showTimer: false
+    };
+  },
+  methods: {
+    setShowTimer: function(newMode) {
+      this.showTimer = newMode;
+    }
+  }
+};
+</script>
 <style lang="scss" scoped>
 footer {
   position: absolute;
