@@ -5,18 +5,17 @@
   </footer>
 </template>
 <script lang="ts">
-export default {
-  data() {
-    return {
-      showTimer: false
-    };
-  },
-  methods: {
-    setShowTimer: function(newMode) {
-      this.showTimer = newMode;
-    }
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+
+@Component({})
+export default class extends Vue {
+  showTimer: boolean = false;
+
+  setShowTimer(newMode: boolean) {
+    this.showTimer = newMode;
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 footer {
