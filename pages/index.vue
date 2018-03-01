@@ -1,7 +1,7 @@
 <template>
   <main>
     <ProjectSidebar 
-      :projects="projects"
+      :projects="$store.state.projects"
       :selectedProjectIndex="selectedProjectIndex"
       @addProject="addProject"
       @deleteProject="deleteProject"
@@ -46,8 +46,7 @@ export default class extends Vue {
   }
 
   addProject(name: string) {
-    this.projects.push({ name, color: "red", todos: [] });
-    database.ref("/projects").set(this.projects);
+    this.$store.commit("add", { name, color: "red", todos: [] });
   }
 
   deleteProject(index: number) {
