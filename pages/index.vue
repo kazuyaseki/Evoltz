@@ -37,9 +37,6 @@ export default class extends Vue {
       }
     });
   }
-  selectProject(index: number) {
-    this.selectedProjectIndex = index;
-  }
   toggleTodoStatus(index) {
     let todo = this.projects[this.selectedProjectIndex].todos[index];
     todo.completed = !todo.completed;
