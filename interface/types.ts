@@ -1,4 +1,8 @@
 export namespace Types {
+  export interface State {
+    projects: Project[];
+  }
+
   export interface Project {
     name: string;
     color: string;

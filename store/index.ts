@@ -3,10 +3,10 @@ import { database } from "../plugins/firebase";
 
 
 export const mutations = {
-  init(state, projects: Types.Project[]) {
+  init(state: Types.State, projects: Types.Project[]) {
     state.projects = projects;
   },
-  addProject(state, project: Types.Project) {
+  addProject(state: Types.State, project: Types.Project) {
     state.projects = [...state.projects, project];
   }
 };
