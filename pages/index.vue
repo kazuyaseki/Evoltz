@@ -1,10 +1,6 @@
 <template>
   <main>
-    <ProjectSidebar 
-      :projects="$store.state.projects"
-      :selectedProjectIndex="selectedProjectIndex"
-      @selectProject="selectProject"
-    />
+    <ProjectSidebar />
     <TodoList 
       :todos="projects[selectedProjectIndex] && projects[selectedProjectIndex].todos || []" 
       @addTodo="addTodo"

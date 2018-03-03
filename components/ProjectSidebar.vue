@@ -27,11 +27,9 @@ import { mapState } from "vuex";
 import { Types } from "../interface/types";
 
 @Component({
-  computed: { ...mapState(["selectedProjectIndex"]) }
+  computed: { ...mapState(["projects", "selectedProjectIndex"]) }
 })
 export default class extends Vue {
-  @Prop() projects: Types.Project[];
-
   projectName: string = "";
   addingProject: boolean = false;
 
