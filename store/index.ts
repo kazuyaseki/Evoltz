@@ -12,13 +12,16 @@ export const mutations = {
 };
 
 export const actions = {
-  async addProject({ commit, state }, project) {
-    const err = await database
-      .ref("/projects")
-      .set([...state.projects, project]);
+  async addProject({ commit, state }, name: string) {
+    const proj: Types.Project = projFactory(name);
+    const err = await database.ref("/projects").set([...state.projects, proj]);
 
     if (!err) {
-      commit("addProject", project);
+      commit("addProject", proj);
     }
   }
+};
+
+const projFactory: (name: string) => Types.Project = name => {
+  return { name, color: "red", todos: [] };
 };
