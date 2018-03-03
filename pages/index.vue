@@ -2,8 +2,8 @@
   <main>
     <ProjectSidebar />
     <TodoList 
-      :todos="projects[selectedProjectIndex] && projects[selectedProjectIndex].todos || []" 
       @addTodo="addTodo"
+      :todos="$store.getters.selectedProject.todos"
       @toggleStatus="toggleTodoStatus"
     />
   </main>

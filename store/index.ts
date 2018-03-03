@@ -34,6 +34,16 @@ export const actions = {
     if (!err) {
       commit("deleteProject", index);
     }
+
+export const getters = {
+  selectedProject(state: Types.State) {
+    if (state.projects[state.selectedProjectIndex]) {
+      return state.projects[state.selectedProjectIndex];
+    }
+    return [];
+  }
+};
+
 const updateProjectsOnFirebase = (newProjects: Types.Project[]) => {
   return database.ref("/projects").set(newProjects);
 };
