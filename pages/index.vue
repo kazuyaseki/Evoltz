@@ -1,10 +1,7 @@
 <template>
   <main>
     <ProjectSidebar />
-    <TodoList 
-      :todos="$store.getters.selectedProject.todos"
-      @toggleStatus="toggleTodoStatus"
-    />
+    <TodoList :todos="$store.getters.selectedProject.todos" />
   </main>
 </template>
 
@@ -14,7 +11,6 @@ import { Component } from "vue-property-decorator";
 
 import ProjectSidebar from "../components/ProjectSidebar.vue";
 import TodoList from "../components/TodoList.vue";
-import { database } from "../plugins/firebase";
 import { Types } from "../interface/types";
 
 @Component({
@@ -23,34 +19,7 @@ import { Types } from "../interface/types";
     TodoList
   }
 })
-export default class extends Vue {
-  projects: Types.Project[] = [];
-  selectedProjectIndex: number = 0;
-
-  created() {
-    database.ref("/projects").once("value", snapshot => {
-      if (snapshot !== null) {
-        const projects = snapshot.val() || [];
-        for (const proj of projects) {
-          this.projects.push(proj);
-        }
-      }
-    });
-  }
-  toggleTodoStatus(index) {
-    let todo = this.projects[this.selectedProjectIndex].todos[index];
-    todo.completed = !todo.completed;
-    database.ref("/projects").set(this.projects);
-  }
-
-  todoFactory = (name: string): Types.Todo => {
-    return {
-      name,
-      memo: "",
-      completed: false
-    };
-  };
-}
+export default class extends Vue {}
 </script>
 <style lang="scss" scoped>
 main {

@@ -17,6 +17,10 @@ export const mutations = {
   },
   addTodo(state: Types.State, name: string) {
     addNewTodo(state.projects[state.selectedProjectIndex], name);
+  },
+  toggleTodoStatus(state: Types.State, index: string) {
+    let todo = state.projects[state.selectedProjectIndex].todos[index];
+    todo.completed = !todo.completed;
   }
 };
 
@@ -47,6 +51,18 @@ export const actions = {
 
     if (!err) {
       commit("addTodo", name);
+    }
+  },
+  async toggleTodoStatus({ commit, state }, index: number) {
+    const copiedProjects = state.projects.map(proj => ({
+      ...JSON.parse(JSON.stringify(proj))
+    }));
+    let todo = copiedProjects[state.selectedProjectIndex].todos[index];
+    todo.completed = !todo.completed;
+    const err = await updateProjectsOnFirebase(copiedProjects);
+
+    if (!err) {
+      commit("toggleTodoStatus", index);
     }
   }
 };

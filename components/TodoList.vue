@@ -40,7 +40,7 @@ export default class extends Vue {
   }
 
   toggleStatus(index: number) {
-    this.$emit("toggleStatus", index);
+    this.$store.dispatch("toggleTodoStatus", index);
   }
 }
 </script>
