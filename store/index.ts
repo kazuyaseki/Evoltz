@@ -1,6 +1,10 @@
 import { Types } from "../interface/types";
 import { database } from "../plugins/firebase";
 
+export const state: () => Types.State = () => ({
+  projects: [],
+  selectedProjectIndex: 0
+});
 
 export const mutations = {
   init(state: Types.State, projects: Types.Project[]) {

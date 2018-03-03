@@ -9,7 +9,10 @@
 import ProjectSidebar from "../components/ProjectSidebar.vue";
 import TodoList from "../components/TodoList.vue";
 
+import { init } from "./shared";
+
 export default {
+  fetch: init,
   components: {
     ProjectSidebar,
     TodoList
