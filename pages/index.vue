@@ -3,7 +3,6 @@
     <ProjectSidebar 
       :projects="$store.state.projects"
       :selectedProjectIndex="selectedProjectIndex"
-      @addProject="addProject"
       @deleteProject="deleteProject"
       @selectProject="selectProject"
     />
@@ -44,11 +43,6 @@ export default class extends Vue {
       }
     });
   }
-
-  addProject(name: string) {
-    this.$store.dispatch("addProject", { name, color: "red", todos: [] });
-  }
-
   deleteProject(index: number) {
     this.projects.splice(index, 1);
     database.ref("/projects").set(this.projects);

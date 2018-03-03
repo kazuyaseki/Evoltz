@@ -38,7 +38,7 @@ export default class extends Vue {
   }
 
   addProject() {
-    this.$emit("addProject", this.projectName);
+    this.$store.dispatch("addProject", this.projectName);
     this.setAddingProjectMode(false);
     this.projectName = "";
   }
