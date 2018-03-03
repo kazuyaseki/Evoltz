@@ -1,16 +1,24 @@
-export const state = () => ({});
+import { Types } from "../interface/types";
+import { database } from "../plugins/firebase";
 
-export const mutations = {};
 
 export const mutations = {
   init(state, projects: Types.Project[]) {
     state.projects = projects;
   },
-  add(state, project: Types.Project) {
-    console.log("aa");
+  addProject(state, project: Types.Project) {
     state.projects = [...state.projects, project];
-    database.ref("/projects").set(state.projects);
   }
 };
 
-export const actions = {};
+export const actions = {
+  async addProject({ commit, state }, project) {
+    const err = await database
+      .ref("/projects")
+      .set([...state.projects, project]);
+
+    if (!err) {
+      commit("addProject", project);
+    }
+  }
+};

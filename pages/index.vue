@@ -46,7 +46,7 @@ export default class extends Vue {
   }
 
   addProject(name: string) {
-    this.$store.commit("add", { name, color: "red", todos: [] });
+    this.$store.dispatch("addProject", { name, color: "red", todos: [] });
   }
 
   deleteProject(index: number) {
