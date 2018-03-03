@@ -20,7 +20,7 @@ export const mutations = {
 export const actions = {
   async addProject({ commit, state }, name: string) {
     const proj: Types.Project = projFactory(name);
-    const err = await database.ref("/projects").set([...state.projects, proj]);
+    const err = await updateProjectsOnFirebase([...state.projects, proj]);
 
     if (!err) {
       commit("addProject", proj);
@@ -29,11 +29,14 @@ export const actions = {
   async deleteProject({ commit, state }, index: number) {
     const copiedProjects = state.projects.map(proj => ({ ...proj }));
     copiedProjects.splice(index, 1);
-    const err = await database.ref("/projects").set(copiedProjects);
+    const err = await updateProjectsOnFirebase(copiedProjects);
 
     if (!err) {
       commit("deleteProject", index);
     }
+const updateProjectsOnFirebase = (newProjects: Types.Project[]) => {
+  return database.ref("/projects").set(newProjects);
+};
   }
 };
 
