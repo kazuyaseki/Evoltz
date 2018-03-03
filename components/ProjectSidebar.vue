@@ -44,7 +44,7 @@ export default class extends Vue {
   }
 
   deleteProject(index) {
-    this.$emit("deleteProject", index);
+    this.$store.dispatch("deleteProject", index);
   }
 
   selectProject(index) {

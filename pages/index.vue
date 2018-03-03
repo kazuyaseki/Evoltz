@@ -3,7 +3,6 @@
     <ProjectSidebar 
       :projects="$store.state.projects"
       :selectedProjectIndex="selectedProjectIndex"
-      @deleteProject="deleteProject"
       @selectProject="selectProject"
     />
     <TodoList 
@@ -43,11 +42,6 @@ export default class extends Vue {
       }
     });
   }
-  deleteProject(index: number) {
-    this.projects.splice(index, 1);
-    database.ref("/projects").set(this.projects);
-  }
-
   selectProject(index: number) {
     this.selectedProjectIndex = index;
   }

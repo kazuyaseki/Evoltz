@@ -8,6 +8,9 @@ export const mutations = {
   },
   addProject(state: Types.State, project: Types.Project) {
     state.projects = [...state.projects, project];
+  },
+  deleteProject(state: Types.State, index: number) {
+    state.projects.splice(index, 1);
   }
 };
 
@@ -18,6 +21,15 @@ export const actions = {
 
     if (!err) {
       commit("addProject", proj);
+    }
+  },
+  async deleteProject({ commit, state }, index: number) {
+    const copiedProjects = state.projects.map(proj => ({ ...proj }));
+    copiedProjects.splice(index, 1);
+    const err = await database.ref("/projects").set(copiedProjects);
+
+    if (!err) {
+      commit("deleteProject", index);
     }
   }
 };
