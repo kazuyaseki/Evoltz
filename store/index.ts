@@ -11,6 +11,9 @@ export const mutations = {
   },
   deleteProject(state: Types.State, index: number) {
     state.projects.splice(index, 1);
+  },
+  selectProject(state: Types.State, index: number) {
+    state.selectedProjectIndex = index;
   }
 };
 

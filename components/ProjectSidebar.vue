@@ -23,12 +23,14 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
+import { mapState } from "vuex";
 import { Types } from "../interface/types";
 
-@Component({})
+@Component({
+  computed: { ...mapState(["selectedProjectIndex"]) }
+})
 export default class extends Vue {
   @Prop() projects: Types.Project[];
-  @Prop() selectedProjectIndex: number;
 
   projectName: string = "";
   addingProject: boolean = false;
@@ -48,7 +50,7 @@ export default class extends Vue {
   }
 
   selectProject(index) {
-    this.$emit("selectProject", index);
+    this.$store.commit("selectProject", index);
   }
 }
 </script>

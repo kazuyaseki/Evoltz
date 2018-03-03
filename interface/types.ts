@@ -1,6 +1,7 @@
 export namespace Types {
   export interface State {
     projects: Project[];
+    selectedProjectIndex: number;
   }
 
   export interface Project {
