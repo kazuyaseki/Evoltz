@@ -6,20 +6,15 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
-
 import ProjectSidebar from "../components/ProjectSidebar.vue";
 import TodoList from "../components/TodoList.vue";
-import { Types } from "../interface/types";
 
-@Component({
+export default {
   components: {
     ProjectSidebar,
     TodoList
   }
-})
-export default class extends Vue {}
+};
 </script>
 <style lang="scss" scoped>
 main {
