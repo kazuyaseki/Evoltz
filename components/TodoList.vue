@@ -34,7 +34,7 @@ export default class extends Vue {
   }
 
   addTodo() {
-    this.$emit("addTodo", this.todoName);
+    this.$store.dispatch("addTodo", this.todoName);
     this.setAddingTodoMode(false);
     this.todoName = "";
   }

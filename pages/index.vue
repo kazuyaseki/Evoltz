@@ -2,7 +2,6 @@
   <main>
     <ProjectSidebar />
     <TodoList 
-      @addTodo="addTodo"
       :todos="$store.getters.selectedProject.todos"
       @toggleStatus="toggleTodoStatus"
     />
@@ -41,20 +40,6 @@ export default class extends Vue {
   selectProject(index: number) {
     this.selectedProjectIndex = index;
   }
-
-  addTodo(newTodoName: string) {
-    if (this.projects[this.selectedProjectIndex].todos) {
-      this.projects[this.selectedProjectIndex].todos.push(
-        this.todoFactory(newTodoName)
-      );
-    } else {
-      this.$set(this.projects[this.selectedProjectIndex], "todos", [
-        this.todoFactory(newTodoName)
-      ]);
-    }
-    database.ref("/projects").set(this.projects);
-  }
-
   toggleTodoStatus(index) {
     let todo = this.projects[this.selectedProjectIndex].todos[index];
     todo.completed = !todo.completed;
