@@ -27,6 +27,7 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import { Types } from "../interface/types";
 import Tooltip from "./common/Tooltip.vue";
+import * as MUTATION_TYPES from "../store/mutation-types";
 
 @Component({
   components: {
@@ -61,13 +62,13 @@ export default class extends Vue {
   }
 
   addTodo() {
-    this.$store.dispatch("addTodo", this.todoName);
+    this.$store.dispatch(MUTATION_TYPES.ADD_TODO, this.todoName);
     this.setAddingTodoMode(false);
     this.todoName = "";
   }
 
   toggleStatus(index: number) {
-    this.$store.dispatch("toggleTodoStatus", index);
+    this.$store.dispatch(MUTATION_TYPES.TOGGLE_TODO, index);
   }
 }
 </script>

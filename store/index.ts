@@ -1,5 +1,6 @@
-import { Types } from "../interface/types";
 import { database } from "../plugins/firebase";
+import * as MUTATION_TYPES from "./mutation-types";
+import { Types } from "../interface/types";
 
 export const state: () => Types.State = () => ({
   projects: [],
@@ -7,46 +8,46 @@ export const state: () => Types.State = () => ({
 });
 
 export const mutations = {
-  init(state: Types.State, projects: Types.Project[]) {
+  [MUTATION_TYPES.INIT](state: Types.State, projects: Types.Project[]) {
     state.projects = projects;
   },
-  addProject(state: Types.State, project: Types.Project) {
+  [MUTATION_TYPES.ADD_PROJECT](state: Types.State, project: Types.Project) {
     state.projects = [...state.projects, project];
   },
-  deleteProject(state: Types.State, index: number) {
+  [MUTATION_TYPES.DELETE_PROJECT](state: Types.State, index: number) {
     state.projects.splice(index, 1);
   },
-  selectProject(state: Types.State, index: number) {
+  [MUTATION_TYPES.SELECT_PROJECT](state: Types.State, index: number) {
     state.selectedProjectIndex = index;
   },
-  addTodo(state: Types.State, name: string) {
+  [MUTATION_TYPES.ADD_TODO](state: Types.State, name: string) {
     addNewTodo(state.projects[state.selectedProjectIndex], name);
   },
-  toggleTodoStatus(state: Types.State, index: string) {
+  [MUTATION_TYPES.TOGGLE_TODO](state: Types.State, index: string) {
     let todo = state.projects[state.selectedProjectIndex].todos[index];
     todo.completed = !todo.completed;
   }
 };
 
 export const actions = {
-  async addProject({ commit, state }, name: string) {
+  async [MUTATION_TYPES.ADD_PROJECT]({ commit, state }, name: string) {
     const proj: Types.Project = projFactory(name);
     const err = await updateProjectsOnFirebase([...state.projects, proj]);
 
     if (!err) {
-      commit("addProject", proj);
+      commit(MUTATION_TYPES.ADD_PROJECT, proj);
     }
   },
-  async deleteProject({ commit, state }, index: number) {
+  async [MUTATION_TYPES.DELETE_PROJECT]({ commit, state }, index: number) {
     const copiedProjects = state.projects.map(proj => ({ ...proj }));
     copiedProjects.splice(index, 1);
     const err = await updateProjectsOnFirebase(copiedProjects);
 
     if (!err) {
-      commit("deleteProject", index);
+      commit(MUTATION_TYPES.DELETE_PROJECT, index);
     }
   },
-  async addTodo({ commit, state }, name: string) {
+  async [MUTATION_TYPES.ADD_TODO]({ commit, state }, name: string) {
     const copiedProjects = state.projects.map(proj => ({
       ...JSON.parse(JSON.stringify(proj))
     }));
@@ -54,10 +55,10 @@ export const actions = {
     const err = await updateProjectsOnFirebase(copiedProjects);
 
     if (!err) {
-      commit("addTodo", name);
+      commit(MUTATION_TYPES.ADD_TODO, name);
     }
   },
-  async toggleTodoStatus({ commit, state }, index: number) {
+  async [MUTATION_TYPES.TOGGLE_TODO]({ commit, state }, index: number) {
     const copiedProjects = state.projects.map(proj => ({
       ...JSON.parse(JSON.stringify(proj))
     }));
@@ -66,7 +67,7 @@ export const actions = {
     const err = await updateProjectsOnFirebase(copiedProjects);
 
     if (!err) {
-      commit("toggleTodoStatus", index);
+      commit(MUTATION_TYPES.TOGGLE_TODO, index);
     }
   }
 };

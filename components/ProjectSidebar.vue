@@ -25,6 +25,7 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import { mapState } from "vuex";
 import { Types } from "../interface/types";
+import * as MUTATION_TYPES from "../store/mutation-types";
 
 @Component({
   computed: { ...mapState(["projects", "selectedProjectIndex"]) }
@@ -38,17 +39,17 @@ export default class extends Vue {
   }
 
   addProject() {
-    this.$store.dispatch("addProject", this.projectName);
+    this.$store.dispatch(MUTATION_TYPES.ADD_PROJECT, this.projectName);
     this.setAddingProjectMode(false);
     this.projectName = "";
   }
 
   deleteProject(index) {
-    this.$store.dispatch("deleteProject", index);
+    this.$store.dispatch(MUTATION_TYPES.DELETE_PROJECT, index);
   }
 
   selectProject(index) {
-    this.$store.commit("selectProject", index);
+    this.$store.commit(MUTATION_TYPES.SELECT_PROJECT, index);
   }
 }
 </script>
