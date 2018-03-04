@@ -19,7 +19,7 @@
       <button @click="addTodo">タスクを追加する</button>
       <button @click="setAddingTodoMode(false)">キャンセル</button>
     </div>
-    <button v-else @click="setAddingTodoMode(true)" class="add-todo-button">+ タスクを追加する</button>
+    <button v-else @click="setAddingTodoMode(true)" class="add-todo-button">+ タスクを追加</button>
   </div>
 </template>
 <script lang="ts">
