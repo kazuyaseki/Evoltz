@@ -39,7 +39,7 @@ export default class extends Vue {
 
   todoName: string = "";
   addingTodo: boolean = false;
-  showingTooltip: boolean = true;
+  showingTooltip: boolean = false;
   currentMemo: string = "";
   currentTooltipPositions = { x: "0px", y: "0px" };
 
