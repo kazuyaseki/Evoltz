@@ -49,12 +49,15 @@ export default class extends Vue {
 
   showTooltip(e) {
     const index = Number(e.target.getAttribute("data-index"));
-    this.showingTooltip = true;
-    this.currentMemo = this.todos[index].memo;
-    this.currentTooltipPositions = {
-      x: e.target.offsetLeft + "px",
-      y: e.target.offsetHeight + 100 + "px"
-    };
+    const memo = this.todos[index].memo;
+    if (memo.length > 0) {
+      this.showingTooltip = true;
+      this.currentMemo = memo;
+      this.currentTooltipPositions = {
+        x: e.target.offsetLeft + "px",
+        y: e.target.offsetHeight + 100 + "px"
+      };
+    }
   }
 
   removeTooltip() {
