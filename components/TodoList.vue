@@ -4,11 +4,16 @@
       <li :class="todo.completed ? 'todo completed' : 'todo'" 
         v-for="(todo, index) in todos"
         :key="todo.name"
+        :data-index="index"
         @click="toggleStatus(index)"
+        @mouseover="showTooltip"
+        @mouseout="removeTooltip"
       >
         {{ todo.name }}
       </li>
     </ul>
+    <Tooltip v-if="showingTooltip" :message="currentMemo" :positions="currentTooltipPositions" />
+
     <div v-if="addingTodo">
       <input type="text" v-model="todoName" @keypress.enter="addTodo" />
       <button @click="addTodo">タスクを追加する</button>
@@ -21,16 +26,38 @@
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import { Types } from "../interface/types";
+import Tooltip from "./common/Tooltip.vue";
 
-@Component({})
+@Component({
+  components: {
+    Tooltip
+  }
+})
 export default class extends Vue {
-  @Prop() todos: string[];
+  @Prop() todos: Types.Todo[];
 
   todoName: string = "";
   addingTodo: boolean = false;
+  showingTooltip: boolean = true;
+  currentMemo: string = "";
+  currentTooltipPositions = { x: "0px", y: "0px" };
 
   setAddingTodoMode(newMode) {
     this.addingTodo = newMode;
+  }
+
+  showTooltip(e) {
+    const index = Number(e.target.getAttribute("data-index"));
+    this.showingTooltip = true;
+    this.currentMemo = this.todos[index].memo;
+    this.currentTooltipPositions = {
+      x: e.target.offsetLeft + "px",
+      y: e.target.offsetHeight + 100 + "px"
+    };
+  }
+
+  removeTooltip() {
+    this.showingTooltip = false;
   }
 
   addTodo() {
