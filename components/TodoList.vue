@@ -9,7 +9,8 @@
         @mouseover="showTooltip"
         @mouseout="removeTooltip"
       >
-        {{ todo.name }}
+        <span>{{ todo.name }}</span>
+        <button class="delete-button" @click.stop="deleteProject(index)">×</button>
       </li>
     </ul>
     <Tooltip v-if="showingTooltip" :message="currentMemo" :positions="currentTooltipPositions" />
@@ -77,16 +78,25 @@ export default class extends Vue {
 </script>
 <style lang="scss" scoped>
 .todo {
+  display: flex;
+  width: 30%;
   cursor: pointer;
 }
 .completed {
-  text-decoration: line-through;
+  span {
+    text-decoration: line-through;
+  }
 }
-
 .add-todo-button {
   border: none;
   background-color: inherit;
   color: #dd4b39;
+  cursor: pointer;
+}
+.delete-button {
+  margin-left: auto;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
 }
 </style>
