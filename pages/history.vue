@@ -1,6 +1,6 @@
 <template>
   <main>
-    History
+    <CalendarGraph />
   </main>
 </template>
 
@@ -8,10 +8,11 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 
+import CalendarGraph from "../components/CalendarGraph.vue";
 import { Types } from "../interface/types";
 
 @Component({
-  components: {}
+  components: { CalendarGraph }
 })
 export default class extends Vue {}
 </script>
