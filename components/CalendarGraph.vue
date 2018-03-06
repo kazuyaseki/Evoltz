@@ -1,5 +1,5 @@
 <template>
-  <svg width="676" height="104" class="js-calendar-graph-svg">
+  <svg :width="width" :height="height">
     <g transform="translate(16, 20)">
         <g transform="translate(0, 0)">
             <rect class="day" width="10" height="10" x="13" y="0" fill="#ebedf0" data-count="0" data-date="2017-03-05"/>
@@ -57,7 +57,9 @@
 </template>
 
 <script lang="ts">
-export default {};
+export default {
+  props: ["width", "height"]
+};
 </script>
 <style lang="scss" scoped>
 
