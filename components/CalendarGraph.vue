@@ -61,6 +61,7 @@ export default {
   props: ["width", "height"]
 };
 </script>
+<style src="../assets/css/global.scss" lang="scss"></style>
 <style lang="scss" scoped>
 
 </style>
