@@ -1,8 +1,8 @@
 <template>
   <main>
     <CalendarGraph
-      :width="676"
-      :height="104"
+      :width="780"
+      :height="134"
     />
   </main>
 </template>
