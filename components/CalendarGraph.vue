@@ -6,14 +6,8 @@
       </g>
 
       <text :key="month" v-for="(month, index) in months" :x="13 + 50 * index" y="0" class="month">{{month}}</text>
-    <text text-anchor="start" class="wday" dx="-14" dy="8" style="display: none;">Sun</text>
-    <text text-anchor="start" class="wday" dx="-14" dy="20">Mon</text>
-    <text text-anchor="start" class="wday" dx="-14" dy="32" style="display: none;">Tue</text>
-    <text text-anchor="start" class="wday" dx="-14" dy="44">Wed</text>
-    <text text-anchor="start" class="wday" dx="-14" dy="57" style="display: none;">Thu</text>
-    <text text-anchor="start" class="wday" dx="-14" dy="69">Fri</text>
-    <text text-anchor="start" class="wday" dx="-14" dy="81" style="display: none;">Sat</text>
-  </g>
+      <text text-anchor="start" :key="week" v-for="(week, index) in weeks" x="-14" :y="20 + 12 * index" class="month" :class="index % 2 === 0 ? 'wday invisible' : 'wday' ">{{ week }}</text>
+    </g>
   </svg>
 </template>
 
@@ -35,12 +29,18 @@ export default {
         "Oct",
         "Nov",
         "Dec"
-      ]
+      ],
+      weeks: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     };
   }
 };
 </script>
 <style src="../assets/css/global.scss" lang="scss"></style>
 <style lang="scss" scoped>
-
+.wday {
+  font-size: 10px;
+}
+.invisible {
+  display: none;
+}
 </style>
