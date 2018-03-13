@@ -37,6 +37,9 @@ export default {
 </script>
 <style src="../assets/css/global.scss" lang="scss"></style>
 <style lang="scss" scoped>
+.month {
+  font-size: 12px;
+}
 .wday {
   font-size: 10px;
 }
