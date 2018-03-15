@@ -4,6 +4,7 @@
       :width="780"
       :height="134"
     />
+    <doneProject :projectName="'hoge'" />
   </main>
 </template>
 
@@ -12,10 +13,14 @@ import Vue from "vue";
 import { Component } from "vue-property-decorator";
 
 import CalendarGraph from "../components/CalendarGraph.vue";
+import doneProject from "../components/doneProject.vue";
 import { Types } from "../interface/types";
 
 @Component({
-  components: { CalendarGraph }
+  components: {
+    CalendarGraph,
+    doneProject
+  }
 })
 export default class extends Vue {}
 </script>
