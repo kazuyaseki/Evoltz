@@ -4,7 +4,11 @@
       :width="780"
       :height="134"
     />
-    <doneProject :projectName="'hoge'" />
+    <doneProject 
+      :projectName="'hoge'"
+      :doneTodos="doneTodos"
+    />
+  
   </main>
 </template>
 
@@ -22,7 +26,9 @@ import { Types } from "../interface/types";
     doneProject
   }
 })
-export default class extends Vue {}
+export default class extends Vue {
+  doneTodos = ["hoge", "fuga"];
+}
 </script>
 <style lang="scss" scoped>
 main {

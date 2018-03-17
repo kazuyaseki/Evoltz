@@ -9,7 +9,7 @@
 
 <script lang="ts">
 export default {
-  props: ["projectName"],
+  props: ["projectName", "doneTodos"],
   data() {
     return {};
   }
