@@ -5,6 +5,7 @@ import uuidv4 from "uuid/v4";
 
 export const state: () => Types.State = () => ({
   projects: [],
+  doneTodos: {},
   selectedProjectIndex: 0
 });
 

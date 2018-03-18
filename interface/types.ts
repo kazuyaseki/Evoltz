@@ -1,6 +1,7 @@
 export namespace Types {
   export interface State {
     projects: Project[];
+    doneTodos: DoneTodos;
     selectedProjectIndex: number;
   }
 
@@ -16,5 +17,12 @@ export namespace Types {
     name: string;
     memo: string;
     completed: boolean;
+  }
+
+  export interface DoneTodos {
+    [key: string]: {
+      projectId: string;
+      todoIds: string[];
+    }[];
   }
 }
