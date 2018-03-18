@@ -1,6 +1,7 @@
 import { database } from "../plugins/firebase";
 import * as MUTATION_TYPES from "./mutation-types";
 import { Types } from "../interface/types";
+import uuidv4 from "uuid/v4";
 
 export const state: () => Types.State = () => ({
   projects: [],
@@ -94,11 +95,12 @@ const addNewTodo = (selectedProject: Types.Project, todoName: string) => {
 };
 
 const projFactory: (name: string) => Types.Project = name => {
-  return { name, color: "red", todos: [] };
+  return { id: uuidv4(), name, color: "red", todos: [] };
 };
 
 const todoFactory = (name: string): Types.Todo => {
   return {
+    id: uuidv4(),
     name,
     memo: "",
     completed: false
