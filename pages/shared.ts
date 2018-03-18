@@ -1,13 +1,14 @@
 import { database } from "../plugins/firebase";
 
-export function init({ store, redirect, error }) {
+export async function init({ store, redirect, error }) {
   try {
-    const res = database.ref("/projects").once("value", res => {
-      if (res !== null) {
-        const projects = res.val() || [];
-        store.commit("init", projects);
-      }
-    });
+    const projectsRes = await database.ref("/projects").once("value");
+    const doneTodosRes = await database.ref("/doneTodos").once("value");
+
+    const projects = projectsRes !== null ? projectsRes.val() || [] : [];
+    const doneTodos = doneTodosRes !== null ? doneTodosRes.val() || [] : [];
+
+    store.commit("init", projects, doneTodos);
   } catch (err) {
     redirect("/error");
   }
