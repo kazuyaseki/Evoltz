@@ -10,8 +10,13 @@ export const state: () => Types.State = () => ({
 });
 
 export const mutations = {
-  [MUTATION_TYPES.INIT](state: Types.State, projects: Types.Project[]) {
+  [MUTATION_TYPES.INIT](
+    state: Types.State,
+    projects: Types.Project[],
+    doneTodos: Types.DoneTodos
+  ) {
     state.projects = projects;
+    state.doneTodos = doneTodos;
   },
   [MUTATION_TYPES.ADD_PROJECT](state: Types.State, project: Types.Project) {
     state.projects = [...state.projects, project];
