@@ -15,6 +15,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import { mapState } from "vuex";
 
 import CalendarGraph from "../components/CalendarGraph.vue";
 import doneProject from "../components/doneProject.vue";
@@ -24,11 +25,10 @@ import { Types } from "../interface/types";
   components: {
     CalendarGraph,
     doneProject
-  }
+  },
+  computed: { ...mapState(["doneTodos"]) }
 })
-export default class extends Vue {
-  doneTodos = ["hoge", "fuga"];
-}
+export default class extends Vue {}
 </script>
 <style lang="scss" scoped>
 main {
