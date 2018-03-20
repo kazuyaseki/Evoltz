@@ -35,9 +35,5 @@ main {
   margin: 0 auto;
   max-width: 1080px;
   min-height: 100%;
-  display: grid;
-  grid-template-columns: 2fr 5fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "g0 g1";
 }
 </style>
