@@ -28,7 +28,13 @@ import { Types } from "../interface/types";
   },
   computed: { ...mapState(["doneTodos"]) }
 })
-export default class extends Vue {}
+export default class extends Vue {
+  data() {
+    return {
+      selectedDate: undefined
+    };
+  }
+}
 </script>
 <style lang="scss" scoped>
 main {
