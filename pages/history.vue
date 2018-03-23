@@ -21,20 +21,21 @@ import CalendarGraph from "../components/CalendarGraph.vue";
 import doneProject from "../components/doneProject.vue";
 import { Types } from "../interface/types";
 
-@Component({
+export default {
   components: {
     CalendarGraph,
     doneProject
   },
-  computed: { ...mapState(["doneTodos"]) }
-})
-export default class extends Vue {
   data() {
     return {
       selectedDate: undefined
     };
+  },
+  computed: {
+    ...mapState(["doneTodos"]),
+    doneProjects: () => this.$store[this.selectedDate]
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 main {
