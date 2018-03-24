@@ -5,8 +5,10 @@
       :height="134"
     />
     <doneProject 
-      :projectName="'hoge'"
-      :doneTodos="doneTodos"
+      v-for="doneProject in doneProjects"
+      :key="doneProject.id"
+      :projectName="doneProject.name"
+      :doneTodos="doneProject.todos"
     />
   
   </main>
