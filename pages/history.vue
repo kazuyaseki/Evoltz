@@ -35,7 +35,8 @@ export default {
   },
   computed: {
     ...mapState(["doneTodos"]),
-    doneProjects: () => this.$store[this.selectedDate]
+    doneProjects: () =>
+      this.selectedDate ? this.doneTodos[this.selectedDate] : []
   }
 };
 </script>
