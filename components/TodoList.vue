@@ -80,7 +80,13 @@ export default class extends Vue {
 .todo {
   display: flex;
   width: 30%;
+  padding: 5px 10px;
+  border-radius: 4px;
   cursor: pointer;
+  &:hover {
+    background-color: #f8f8f8;
+    transition: all 0.5s;
+  }
 }
 .completed {
   span {
