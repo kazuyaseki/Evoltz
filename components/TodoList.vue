@@ -77,6 +77,15 @@ export default class extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+.todos {
+  padding: 3px 15px;
+  ul,
+  li {
+    list-style-type: none;
+    margin-left: 0px;
+    padding-left: 0px;
+  }
+}
 .todo {
   display: flex;
   width: 30%;
